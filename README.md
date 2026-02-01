@@ -3,5 +3,5 @@ Linux GRE Tunnel
 
 ## Installation
 ```
-bash <(curl -Ls https://github.com/wreck3dmind/gre-tunnel/)
+bash <(curl -Ls https://github.com/wreck3dmind/gre-tunnel/main/gre-tunnel.sh)
 ```
