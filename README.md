@@ -1,2 +1,2 @@
-# gre-tunnel
+# GRE Tunnel Setup Wizard
 Linux GRE Tunnel
