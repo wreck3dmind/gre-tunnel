@@ -26,7 +26,7 @@ sudo ip link add name gre1 type gre local $IP remote $REMOTE_IP
 sudo ip link set gre1 up
 
 if [[ "$TYPE" == "1" ]]; then
-    sudo ip addr add 10.1.1.2/8 dev gre1
+    sudo ip addr add 10.1.1.2/16 dev gre1
 
     if [[ "$PORT" != "0" ]]; then
         sysctl net.ipv4.ip_forward=1
@@ -38,5 +38,5 @@ if [[ "$TYPE" == "1" ]]; then
     sudo iptables -A INPUT --proto icmp -j DROP
 
 else
-    sudo ip addr add 10.1.1.1/8 dev gre1
+    sudo ip addr add 10.1.1.1/16 dev gre1
 fi
