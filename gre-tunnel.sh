@@ -26,17 +26,17 @@ sudo ip link add name gre1 type gre local $IP remote $REMOTE_IP
 sudo ip link set gre1 up
 
 if [[ "$TYPE" == "1" ]]; then
-    sudo ip addr add 10.1.1.2/16 dev gre1
+    sudo ip addr add 10.0.0.2/16 dev gre1
 
     if [[ "$PORT" != "0" ]]; then
         sysctl net.ipv4.ip_forward=1
 
-        sudo iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination 10.1.1.1:$PORT
+        sudo iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination 10.0.0.1:$PORT
         sudo iptables -t nat -A POSTROUTING -j MASQUERADE
     fi
 
-    sudo iptables -A INPUT --proto icmp -j DROP
+    sudo iptables -t raw -A PREROUTING --proto icmp -j DROP
 
 else
-    sudo ip addr add 10.1.1.1/16 dev gre1
+    sudo ip addr add 10.0.0.1/16 dev gre1
 fi
